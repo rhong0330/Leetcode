@@ -1,0 +1,6 @@
+class Solution {
+    fun kidsWithCandies(candies: IntArray, extraCandies: Int): List<Boolean> {
+        val maxCandies = candies.maxOrNull() ?: 0 // Find the current maximum candies
+        return candies.map { it + extraCandies >= maxCandies }
+    }
+}
