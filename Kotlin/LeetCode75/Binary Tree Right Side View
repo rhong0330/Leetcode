@@ -1,0 +1,26 @@
+class Solution {
+    fun rightSideView(root: TreeNode?): List<Int> {
+        if (root == null) return emptyList()
+
+        val result = mutableListOf<Int>()
+        val queue: Queue<TreeNode> = LinkedList()
+        queue.offer(root)
+
+        while (queue.isNotEmpty()) {
+            val levelSize = queue.size
+            var rightMostNode: TreeNode? = null
+
+            for (i in 0 until levelSize) {
+                val node = queue.poll()
+                rightMostNode = node // Update rightmost node for this level
+
+                node.left?.let { queue.offer(it) }
+                node.right?.let { queue.offer(it) }
+            }
+
+            rightMostNode?.let { result.add(it.`val`) } // Add last node of each level
+        }
+
+        return result
+    }
+}
