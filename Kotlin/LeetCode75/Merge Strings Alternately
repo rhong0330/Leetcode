@@ -1,0 +1,23 @@
+class Solution {
+    fun mergeAlternately(word1: String, word2: String): String {
+        val result = StringBuilder()
+        val length1 = word1.length
+        val length2 = word2.length
+        val minLength = minOf(length1, length2)
+
+        // Interleave characters from both words
+        for (i in 0 until minLength) {
+            result.append(word1[i])
+            result.append(word2[i])
+        }
+
+        // Append the remaining part of the longer word
+        if (length1 > length2) {
+            result.append(word1.substring(minLength))
+        } else if (length2 > length1) {
+            result.append(word2.substring(minLength))
+        }
+
+        return result.toString()
+    }
+}
