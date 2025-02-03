@@ -1,0 +1,12 @@
+class Solution {
+    fun gcdOfStrings(str1: String, str2: String): String {
+        // If concatenation of both in different orders is not the same, return empty
+        if (str1 + str2 != str2 + str1) return ""
+
+        // Find GCD of lengths
+        fun gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
+
+        val gcdLength = gcd(str1.length, str2.length)
+        return str1.substring(0, gcdLength)
+    }
+}
